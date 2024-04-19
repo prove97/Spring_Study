@@ -5,12 +5,72 @@
 
 <!-- namespace: 해당 mapper파일의 고유한 별칭 -->
 <mapper namespace="boardMapper">
+	<resultMap type="Board" id="boardResult">
+		<result column="BOARD_NO" property="boardNo" />
+		<result column="BOARD_TITLE" property="boardTitle" />
+		<result column="BOARD_WRITER" property="boardWriter" />
+		<result column="BOARD_CONTENT" property="boardContent" />
+		<result column="ORIGIN_NAME" property="originName" />
+		<result column="CHANGE_NAME" property="changeName" />
+		<result column="COUNT" property="count" />
+		<result column="CREATE_DATE" property="createDate" />
+	</resultMap>
 	
+	<!-- 게시글 총 개수 조회 -->
 	<select id="selectListCount" resultType="_int">
 		SELECT COUNT(*)
-		FROM MEMBER
+		FROM BOARD
 		WHERE STATUS = 'Y'
 	</select>
 
+	<!-- 게시글 리스트 조회-->
+	<select id="selectList" resultMap="boardResult">
+		SELECT BOARD_NO,
+			   BOARD_TITLE,
+			   BOARD_WRITER,
+			   ORIGIN_NAME,
+			   COUNT,
+			   TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS "CREATE_DATE"
+		FROM BOARD
+		WHERE STATUS = 'Y'
+		ORDER BY BOARD_NO DESC
+	</select>
+	
+	<!-- 게시글 조회수 증가 -->
+	<update id="increaseCount">
+		UPDATE BOARD
+		SET COUNT = COUNT +1 
+		WHERE BOARD_NO = #{bno}
+		AND STATUS = 'Y'
+	</update>
+	
+	<!-- 게시글 상세 조회 -->
+	<select id="selectBoard" resultMap="boardResult">
+		SELECT BOARD_NO,
+			   BOARD_TITLE,
+			   BOARD_WRITER,
+			   BOARD_CONTENT,
+			   ORIGIN_NAME,
+			   CHANGE_NAME,
+			   COUNT,
+			   TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS "CREATE_DATE"
+		FROM BOARD
+		WHERE STATUS = 'Y'		
+		AND BOARD_NO = #{bno}
+	</select>
+	
+	<!-- 댓글 리스트 조회 -->
+		<select id="selectReply" resultType="Reply">
+		SELECT REPLY_NO AS replyNo,
+			   REPLY_CONTENT AS replyContent,
+			   REPLY_WRITER AS replyWriter,
+			   TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') AS createDate
+		FROM REPLY
+		WHERE STATUS = 'Y'
+		AND REF_BNO = #{bno}
+		ORDER BY REPLY_NO DESC
+	</select>
+	
+	
 </mapper>
 

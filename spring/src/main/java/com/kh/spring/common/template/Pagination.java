@@ -1,3 +1,5 @@
+package com.kh.spring.common.template;
+
 import com.kh.spring.common.model.vo.PageInfo;
 
 public class Pagination {
