@@ -27,4 +27,10 @@ public interface BoardService {
 	
 	//게시글 수정(update)
 	int updateBoard(Board b);
+	
+	//댓글 생성
+	int insertReply(Reply r);
+	
+	//상위 5개 게시글 조회
+	ArrayList<Board> selectTopBoardList();
 }
