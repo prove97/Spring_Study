@@ -1,5 +1,6 @@
 package com.kh.spring.member.controller;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -125,7 +126,7 @@ public class MemberController {
 
 	// 2. 스프링에서 제공하는 ModelAndView객체 사용
 	@RequestMapping("login.me")
-	public ModelAndView loginMember(Member m, ModelAndView mv, HttpSession session) { 
+	public ModelAndView loginMember(Member m, ModelAndView mv, HttpSession session, String saveId, HttpServletResponse response) { 
 		// 암호화 전
 //		Member loginUser = memberService.loginMember(m);
 //		
