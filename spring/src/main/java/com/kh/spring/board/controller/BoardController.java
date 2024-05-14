@@ -23,16 +23,21 @@ import com.kh.spring.board.service.BoardService;
 import com.kh.spring.common.model.vo.PageInfo;
 import com.kh.spring.common.template.Pagination;
 
+import lombok.extern.slf4j.Slf4j;
+
+
+@Slf4j
 @Controller
 public class BoardController {
 	
 	@Autowired
 	private BoardService boardService;
-	
+		
 	@RequestMapping("list.bo")
 	public String selectListCount(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) {
 		int boardCount = boardService.selectListCount();
-
+//		log.info("list.bo실행");
+		
 		PageInfo pi = Pagination.getPageInfo(boardCount, currentPage, 10, 5);
 		
 		ArrayList<Board> list = boardService.selectList(pi);
