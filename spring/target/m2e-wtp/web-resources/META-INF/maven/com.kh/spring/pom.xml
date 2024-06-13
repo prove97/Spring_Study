@@ -107,17 +107,12 @@
 				
 		<!-- Servlet -->
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
 			<version>2.1</version>
 			<scope>provided</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
@@ -128,8 +123,14 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.7</version>
+			<version>4.13</version>
 			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${org.springframework-version}</version>
 		</dependency>
 				
 		<!-- Lombok 라이브러리 -->
@@ -141,12 +142,21 @@
 		</dependency>
 	
 		<!-- 1. 데이터베이스(오라클, 마이바티스) 관련 라이브러리 -->
-		<!-- 1_1 ojdbc6 라이브러리 -->		
+		<!-- 1_1 ojdbc6 라이브러리 --> 		
 		<dependency>
 		    <groupId>com.oracle.database.jdbc</groupId>
 		    <artifactId>ojdbc6</artifactId>
 		    <version>11.2.0.4</version>
 		</dependency>
+		
+		
+		<!-- postgresql 
+		<dependency>
+		    <groupId>org.postgresql</groupId>
+		    <artifactId>postgresql</artifactId>
+		    <version>42.6.0</version>
+		</dependency>
+		-->
 		
 		
 		<!-- 1_2 스프링에서 JDBC기능을 사용하기위해서는 별도의 라이브러리가 필요함 -->

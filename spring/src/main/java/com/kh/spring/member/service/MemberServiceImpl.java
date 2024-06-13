@@ -1,21 +1,18 @@
 package com.kh.spring.member.service;
 
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.spring.member.model.dao.MemberDao;
 import com.kh.spring.member.model.vo.Member;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor //생성자 주입 방식(lombok이용)
 @Service //Component보다 더 구체화해서 Service bean으로 등록시키는 것
 public class MemberServiceImpl implements MemberService{
-
-	@Autowired
-	private SqlSessionTemplate sqlSession; //기존의 myBatis SqlSession객체 대체
-	
-	@Autowired
-	private MemberDao memberDao;
-	
+	private final SqlSessionTemplate sqlSession; //기존의 myBatis SqlSession객체 대체
+	private final MemberDao memberDao;
 	
 	@Override
 	public Member loginMember(Member m) {

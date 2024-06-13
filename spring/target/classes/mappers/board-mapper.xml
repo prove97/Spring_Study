@@ -124,7 +124,7 @@
 		FROM (SELECT *
 			  FROM BOARD
 			  WHERE STATUS = 'Y'
-			  ORDER BY COUNT DESC)				     	
+			  ORDER BY COUNT DESC) AS FOO			     	
 		WHERE ROWNUM BETWEEN 1 AND 5
 	</select>
 </mapper>

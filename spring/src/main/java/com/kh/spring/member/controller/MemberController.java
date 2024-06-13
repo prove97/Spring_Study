@@ -34,12 +34,26 @@ public class MemberController {
 	 * ↓ Spring의 DI(Dependency Injection, 의존성 주입)를 이용한 방식
 	 * 객체를 생성해서 주입해준다.
 	 * new라는 객체생성 키워드 없이 @Autowired라는 어노테이션만으로 사용해야한다. 
+	 * 
+	 * -------------------------------------------
+	 * 필드 주입 방식
+	 * 스프링 컨테이너가 객체를 생성한 후 , @Autowired 어노테이션이 붙은 필드에 의존성을 주입한다.
+	 * 
+	 * 생성자 주입 방식
+	 * 스프링 컨테이너가 객체를 생성할 떄 생성자를 통해서 필요한 의존성을 주입한다.
+	 * 
+	 * 필드주입방식 -> 생성자주입방식 : 주입 시점 차이로 인해 객체가 완전히 초기화된 상태로 사용할 수 있음을 보장하고
+	 * 테스트 가능성과 유지보수성이 증가한다. 
 	 */
+	
+	private final MemberService memberService;
+	private final BCryptPasswordEncoder bcryptPasswordEncoder;
+	
 	@Autowired
-	private MemberService memberService;
-
-	@Autowired
-	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	public MemberController(MemberService memberService, BCryptPasswordEncoder bcryptPasswordEncoder){
+		this.memberService = memberService;
+		this.bcryptPasswordEncoder = bcryptPasswordEncoder;
+	}
 	
 //	@RequestMapping("login.me") //value값 자동으로 인식 == @RequestMapping(value="/login.me")
 //	public String loginMember(HttpServletRequest request) {
