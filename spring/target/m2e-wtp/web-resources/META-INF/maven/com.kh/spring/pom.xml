@@ -118,6 +118,14 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+		
+		<!-- @WebAppConfiguration을 사용하기위해 서블릿 버전을 3.0이상으로 설정 -->	
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
 	
 		<!-- Test -->
 		<dependency>
